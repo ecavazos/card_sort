@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	DeckSize = 52
+	DeckSize        = 52
 	MaxCardsPerSuit = 13
 )
 
@@ -27,7 +27,7 @@ type Card struct {
 }
 
 func getSuits() [4]string {
-	return [4]string{ "Heart", "Club", "Diamond", "Spade" }
+	return [4]string{"Heart", "Club", "Diamond", "Spade"}
 }
 
 func (c *Card) totalRank() int {
@@ -49,15 +49,15 @@ func createDeck() []Card {
 
 		cardRank := (i % MaxCardsPerSuit) + 1
 
-		deck[i] = Card{ suit: suit, rank: cardRank }
+		deck[i] = Card{suit: suit, rank: cardRank}
 	}
 
 	return deck
 }
 
 func shuffle(deck []Card) []Card {
-	src   := rand.NewSource(0)
-	rnd   := rand.New(src)
+	src := rand.NewSource(0)
+	rnd := rand.New(src)
 	myInt := big.NewInt(0)
 	upper := big.NewInt(52)
 
@@ -73,11 +73,11 @@ func shuffle(deck []Card) []Card {
 
 func sort(deck []Card) []Card {
 	for i := 0; i < DeckSize; i++ {
-		tmp := deck[i]	
-		j   := i
+		tmp := deck[i]
+		j := i
 
-		for j > 0 && deck[j - 1].totalRank() > tmp.totalRank() {
-			deck[j] = deck[j - 1]
+		for j > 0 && deck[j-1].totalRank() > tmp.totalRank() {
+			deck[j] = deck[j-1]
 			j--
 		}
 		deck[j] = tmp
@@ -87,7 +87,7 @@ func sort(deck []Card) []Card {
 }
 
 func main() {
-	
+
 	deck := createDeck()
 	deck = shuffle(deck)
 
@@ -96,7 +96,7 @@ func main() {
 	for i := 0; i < len(deck); i++ {
 		fmt.Println(deck[i])
 	}
-	
+
 	fmt.Println("=== Sorted ===")
 
 	deck = sort(deck)
@@ -105,4 +105,3 @@ func main() {
 		fmt.Println(deck[i])
 	}
 }
-
