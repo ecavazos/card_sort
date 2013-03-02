@@ -4,22 +4,20 @@ import (
 	"fmt"
 )
 
-func main() {
+func printCards(d *Deck) {
+	for _, card := range d.cards {
+		fmt.Println(card)
+	}
+}
 
+func main() {
 	deck := NewDeck()
 	deck.shuffle()
 
-	fmt.Println("=== Shuffled ===")
+	fmt.Println("==== Shuffled ===")
+	printCards(deck)
 
-	for i := 0; i < len(deck.cards); i++ {
-		fmt.Println(deck.cards[i])
-	}
-
-	fmt.Println("=== Sorted ===")
-
+	fmt.Println("====  Sorted  ===")
 	deck.sort()
-
-	for i := 0; i < len(deck.cards); i++ {
-		fmt.Println(deck.cards[i])
-	}
+	printCards(deck)
 }
